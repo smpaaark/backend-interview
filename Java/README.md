@@ -1,7 +1,7 @@
 ## Java
-* ![Call by value와 Call by reference]()
+* [Call by value와 Call by reference]()
 
-![뒤로]()
+[뒤로](https://github.com/smpark1020/backend-interview#back-end-interview)
 
 ## Call by value와 Call by reference
 ### Call by value
@@ -25,6 +25,6 @@ Call by reference는 메서드 호출 시 사용되는 인자 값의 메모리�
 ```
 
 ### 참조
-![]()
+[]()
 
-![맨위로]()
+[맨위로]()
