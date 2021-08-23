@@ -25,6 +25,6 @@ Call by reference는 메서드 호출 시 사용되는 인자 값의 메모리�
 ```
 
 ### 참조
-[[Java] Call by value와 Call by reference](https://re-build.tistory.com/3)
+* [[Java] Call by value와 Call by reference](https://re-build.tistory.com/3)
 
 [맨위로](https://github.com/smpark1020/backend-interview/tree/master/Java#java)
