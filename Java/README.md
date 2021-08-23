@@ -1,5 +1,5 @@
 ## Java
-* [Call by value와 Call by reference](https://github.com/smpark1020/backend-interview/tree/master/Java#java)
+* [Call by value와 Call by reference](https://github.com/smpark1020/backend-interview/tree/master/Java#call-by-value%EC%99%80-call-by-reference)
 
 [뒤로](https://github.com/smpark1020/backend-interview#back-end-interview)
 
