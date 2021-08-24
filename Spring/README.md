@@ -378,5 +378,3 @@ public class PerfAspect {
 * [Spring Boot에서 외부 API 테스트하기](https://jojoldu.tistory.com/341)
 
 [맨위로](https://github.com/smpark1020/backend-interview/tree/master/Spring#spring)
-
-## 스프링 빈의 동시성 문제
