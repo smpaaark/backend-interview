@@ -1,5 +1,5 @@
 ## Spring
-* [트랜잭션 전파 속성]()
+* [트랜잭션 전파 속성](https://github.com/smpark1020/backend-interview/tree/master/Spring#%ED%8A%B8%EB%9E%9C%EC%9E%AD%EC%85%98-%EC%A0%84%ED%8C%8C-%EC%86%8D%EC%84%B1)
 
 [뒤로](https://github.com/smpark1020/backend-interview#back-end-interview)
 
