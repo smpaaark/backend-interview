@@ -320,3 +320,10 @@ JDK 1.8 이후로는 함수 객체의 인스턴스를 람다식으로 만들어 
 * [Java에서 싱글톤(Singleton) 패턴을 사용하는 이유와 주의할 점](https://elfinlas.github.io/2019/09/23/java-singleton/)
 
 [맨위로](https://github.com/smpark1020/backend-interview/tree/master/Java#java)
+
+## 자동 형변환(암시적 형변환)
+* 작은 크기의 타입은 큰 크기의 타입으로 자동 형변환됩니다.
+
+## 강제 형변환(명시적 형변환)
+* 큰 크기의 타입을 작은 크기의 타입으로 변경할 경우
+
