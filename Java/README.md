@@ -86,7 +86,7 @@
 * 람다에서의 this는 선언된 클래스를 가리킵니다.
 
 ## String과 new String
-![1]()   
+![1](https://raw.githubusercontent.com/smpark1020/backend-interview/master/Java/1.PNG)   
 
 ## Immutable Class(불변 클래스)
 * 변경이 불가능한 클래스이며, 가변적이지 않는 클래스입니다.
@@ -193,3 +193,36 @@ public final class ImmutableClass {
 * heap에 저장됩니다.
 * null로 초기화됩니다.
 * NullPointerException 발생 위험이 있습니다.
+
+## Local Variable, Instance Variable, Class Variable은 각각 JVM의 어디에 할당되는가?
+* local variable은 Stack
+* Instance variable은 Heap
+* Class variable은 Method
+* 변수가 참조 객체라면 메모리는 모두 Heap에 저장됨
+
+## syncrhonized
+* 멀티 스레드 환경에서 synchronzied 키워드를 사용하여 여러개의 스레드가 공유자원에 접근하는 것을 방지
+* 메서드에 사용
+* 블럭에 사용
+
+## MyBatis에서 #{}과 ${}의 차이
+* #{}은 PrparedStatement의 ? 에 세팅되어 입력됨
+  * '파라미터' 형태
+  * 사용자의 입력값을 파라미터로 전달할 경우 사용
+* ${}은 입력 그대로 쿼리에 입력됨
+  * 테이블 명이나 컬럼명을 동적으로 설정할 때 사용
+
+## ConcurrentHashMap
+* key, value 구조
+* null을 허용하지 않음
+* Entry 배열의 아이템 별로 동기화 처리됨
+* 멀티 스레드 환경에 적합
+
+## Atomic 변수
+* CAS(Compare And Swap) 알고리즘으로 동기화 문제 해결
+* 현재 스레드에 저장된 값과 메인 메모리에 저장된 값을 비교하여 일치하면 새로운 값으로 교체, 아니면 재시도
+
+## HashMap 구조
+* key와 value로 구성
+* Hashing을 사용
+* 해시 충돌 발생할 경우 연결 리스트를 사용

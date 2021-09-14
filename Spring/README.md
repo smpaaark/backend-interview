@@ -1,22 +1,8 @@
-## Spring
-* [트랜잭션 전파 속성](https://github.com/smpark1020/backend-interview/tree/master/Spring#%ED%8A%B8%EB%9E%9C%EC%9E%AD%EC%85%98-%EC%A0%84%ED%8C%8C-%EC%86%8D%EC%84%B1)
-* [트랜잭션 격리 수준](https://github.com/smpark1020/backend-interview/tree/master/Spring#%ED%8A%B8%EB%9E%9C%EC%9E%AD%EC%85%98-%EA%B2%A9%EB%A6%AC-%EC%88%98%EC%A4%80)
-* [AOP](https://github.com/smpark1020/backend-interview/tree/master/Spring#aop)
-* [Filter, Interceptor, AOP 차이](https://github.com/smpark1020/backend-interview/tree/master/Spring#filter-interceptor-aop-%EC%B0%A8%EC%9D%B4)
-* [DispatcherServlet](https://github.com/smpark1020/backend-interview/tree/master/Spring#dispatcherservlet)
-* [의존성 주입 방법](https://github.com/smpark1020/backend-interview/tree/master/Spring#%EC%9D%98%EC%A1%B4%EC%84%B1-%EC%A3%BC%EC%9E%85-%EB%B0%A9%EB%B2%95)
-* [Bean Scope](https://github.com/smpark1020/backend-interview/tree/master/Spring#bean-scope)
-* [Spring에서 싱글톤이 좋은 이유](https://github.com/smpark1020/backend-interview/tree/master/Spring#spring%EC%97%90%EC%84%9C-%EC%8B%B1%EA%B8%80%ED%86%A4%EC%9D%B4-%EC%A2%8B%EC%9D%80-%EC%9D%B4%EC%9C%A0)
-* [외부 API 테스트](https://github.com/smpark1020/backend-interview/tree/master/Spring#%EC%99%B8%EB%B6%80-api-%ED%85%8C%EC%8A%A4%ED%8A%B8)
-
-[뒤로](https://github.com/smpark1020/backend-interview#back-end-interview)
-
 ## 트랜잭션 전파 속성
 진행되고 있는 트랜잭션에서 다른 트랜잭션이 호출될 때 어떻게 처리할지 정하는 것입니다.
 
 ### 전파 설정 옵션
 \@Transactional의 옵션 propagation을 통해 설정할 수 있습니다.
-
 * REQUIRED(기본값)
   * 부모 트랜잭션이 존재한다면 부모 트랜잭션으로 합류합니다.
   * 부모 트랜잭션이 없다면 새로운 트랜잭션을 생성합니다.
@@ -44,16 +30,9 @@
   * 부모 트랜잭션이 있다면 보류시킵니다.
   * 진행중인 부모 트랜잭션이 없다면 트랜잭션을 생성하지 않습니다.
 
-### 참조
-* [[Spring] 트랜잭션의 전파 설정별 동작](https://deveric.tistory.com/86)
-
-[맨위로](https://github.com/smpark1020/backend-interview/tree/master/Spring#spring)
-
 ## 트랜잭션 격리 수준
-* 트랜잭션을 사용할 때, 전파 속성과 함께 따라오는 것이 격리 수준입니다.
 * 트랜잭션에서 일관성이 없는 데이터를 허용하도록 하는 수준을 말합니다.
 * 격리 수준이 높아질수록 동시성(Concurrency)은 높아지고 속도는 느려집니다.
-* 이 둘의 균형을 잘 맞추는 것이 중요합니다.
 
 ### READ_UNCOMMITED (커밋되지 않는 읽기, level 0)
 * 트랜잭션 처리중 or 아직 commit되지 않은 데이터를 다른 트랜잭션이 읽는 것을 허용합니다.
@@ -82,125 +61,20 @@
   * 다중 사용자 DB 성능을 위한 기술
   * 데이터 조회시 LOCK을 사용하지 않고, 데이터의 버전을 관리해 데이터의 일관성 및 동시성을 높이는 기술
 
-### 각 DB별 isolation
-* MYSQL: REPEATABLE_READ
-* ORACLE: READ_COMMITED
-* H2: READ_COMMITED
+### AOP
+* 공통 관심 사항과 핵심 관심 사항을 분리하는 것입니다.
+* 트랜잭션, 시간 측정, 로깅 등
+* 스프링에서 프록시 패턴으로 작동합니다.
 
-### 참조
-* [[Spring] @Transactional - 2 isolation (격리수준)](https://n1tjrgns.tistory.com/267)
+## Filter, Interceptor, AOP
+### Filter
+* Servlet 단위에서 실행됩니다.
+* 
 
-[맨위로](https://github.com/smpark1020/backend-interview/tree/master/Spring#spring)
+### Interceptor
 
-## AOP
-* Aspect Oriented Programming의 약자로 관점 지향 프로그래밍이라고 불립니다.
-* 관점 지향은 쉽게 말해 어떤 로직을 기준으로 핵심적인 관점, 부가적인 관점으로 나누어서 보고 그 관점을 기준으로 각각 모듈화하겠다는 것입니다.
-* 여기서 모듈화란 어떤 공통된 로직이나 기능을 하나의 단위로 묶는 것을 말합니다.
-* 핵심적인 관점은 우리가 적용하고자 하는 핵심 비즈니스 로직이 됩니다.
-* 부가적인 관점은 핵심 로직을 실행하기 위해서 행해지는 데이터베이스 연결, 로깅, 파일 입출력 등을 예로 들 수 있습니다.
-* AOP에서 각 관점을 기준으로 로직을 모듈화한다는 것은 코드들을 부분적으로 나누어서 모듈화하겠다는 의미입니다.
-* 이때 소스 코드상에서 다른 부분에 계속 반복해서 쓰는 코드들을 반결할 수 있는데 이것을 흩어진 관심사(Crosscutting Concerns)라 부릅니다.
-* 흩어진 관심사를 Aspect로 모듈화하고 핵심적인 비즈니스 로직에서 분리하여 재사용하겠다는 것이 AOP의 취지입니다.
-
-### 사용 예시
-\@Transactional, 성능 측정, 로깅 등등
-
-### AOP 주요 개념
-* Aspect
-  * 흩어진 관심사를 모듈화 한 것
-  * 주로 부가기능을 모듈화함
-* Target
-  * Aspect를 적용하는 곳(클래스, 메소드 ...)
-* Advice
-  * 실질적으로 어떤 일을 해야할 지에 대한 것
-  * 실질적인 부가기능을 담은 구현체
-* JointPoint
-  * Advice가 적용될 위치, 끼어들 수 있는 지점
-  * 메소드 진입 지점, 생성자 호출 시점, 필드에서 값을 꺼내올 때 등 다양한 시점에 적용 가능
-* PointCut
-  * JointPoint의 상세한 스펙을 정의한 것
-  * 'A라는 메소드의 진입 시점에 호출할 것'과 같이 더욱 구체적으로 Advice가 실행될 지점을 정할 수 있음
-
-### 스프링 AOP 특징
-* 프록시 패턴 기반의 AOP 구현체
-  * 프록시 객체를 쓰는 이유는 접근 제어 및 부가기능을 추가하기 위해서임
-* 스프링 빈에만 AOP를 적용 가능
-* 모든 AOP 기능을 제공하는 것이 아닌 스프링 IoC와 연동하여 엔터프라이즈 애플리케이션에서 가장 흔한 문제(중복코드, 프록시 클래스 작성의 번거로움, 객체들 간 관계 복잡도 증가, ...)에 대한 해결책을 지원하는 것이 목적
-
-### 스프링 AOP: \@AOP
-* 스프링 \@AOP를 사용하기 위해서는 의존성을 추가해야 합니다.
-```
-<dependency>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-aop</artifactId>
-</dependency>
-```
-* 다음에는 \@Aspect 어노테이션을 붙여 이 클래스가 Aspect를 나타내는 클래스라는 것을 명시하고 \@Component를 붙여 스프링 빈을 등록합니다.
-* \@Around 어노테이션은 타겟 메소드를 감싸서 특정 Advice를 실행한다는 의미입니다.
-  * execution은 이 Aspect를 어느 패키지의 어느 객체의 어느 메소드에 적용하겠다라는 설정입니다.
-  ```
-  @Component
-  @Aspect
-  public class PerfAspect {
-
-    @Around("execution(* com.saelobi..*.EventService.*(..))")
-    public Object logPerf(ProceedingJoinPoint pjp) throws Throwable{
-      long begin = System.currentTimeMillis();
-      Object retVal = pjp.proceed(); // 메서드 호출 자체를 감쌈
-      System.out.println(System.currentTimeMillis() - begin);
-    
-      return retVal;
-    }
-
-  }
-  ```
-* 또한 경로지정 방식말고 특정 어노테이션이 붙은 포인트에 해당 Aspect를 실행할 수 있는 기능도 제공합니다.
-```
-@Component
-@Aspect
-public class PerfAspect {
-
-    @Around("@annotation(PerLogging)")
-    public Object logPerf(ProceedingJoinPoint pjp) throws Throwable{
-        long begin = System.currentTimeMillis();
-        Object retVal = pjp.proceed(); // 메서드 호출 자체를 감쌈
-        System.out.println(System.currentTimeMillis() - begin);
-        return retVal;
-    }
-
-}
-```
-* 마찬가지로 스프링 빈의 모든 메소드에 적용할 수 있는 기능도 제공합니다.
-```
-@Component
-@Aspect
-public class PerfAspect {
-
-    @Around("bean(simpleEventService)")
-    public Object logPerf(ProceedingJoinPoint pjp) throws Throwable{
-        long begin = System.currentTimeMillis();
-        Object retVal = pjp.proceed(); // 메서드 호출 자체를 감쌈
-        System.out.println(System.currentTimeMillis() - begin);
-        return retVal;
-    }
-
-}
-```
-
-* 이 밖에도 \@Around 외에 타겟 메소드의 Aspect 실행 시점을 지정할 수 있는 어노테이션이 있습니다.
-  * \@Before(이전): 어드바이스 타겟  메소드가 호출되기 전에 어드바이스 기능을 수행
-  * \@After(이후): 타겟 메소드의 결과에 관계없이(즉 성공, 예외 관계없이) 타겟 메소드가 완료되면 어드바이스 기능을 수행
-  * \@AfterReturning(정상적 반환 이후): 타겟 메소드가 성공적으로 결과값을 반환 후에 어드바이스 기능을 수행
-  * \@AfterThrowing(예외 발생 이후): 타겟 메소드가 수행 중 예외를 던지게 되면 어드바이스 기능을 수행
-  * \@Around(메소드 실행 전후): 어드바이스가 타겟 메소드를 감싸서 타겟 메소드 호출 전과 후에 어드바이스 기능을 수행
-
-### 참조
-* [[Spring] 스프링 AOP (Spring AOP) 총정리 : 개념, 프록시 기반 AOP, @AOP](https://engkimbs.tistory.com/746)
-
-[맨위로](https://github.com/smpark1020/backend-interview/tree/master/Spring#spring)
-
-## Filter, Interceptor, AOP 차이
-스프링에서 사용되는 Filter, Interceptor, AOP 세 가지 기능은 모두 무슨 행동을 하기전에 먼저 실행하거나, 실행한 후에 추가적인 행동을 할 때 사용되는 기능들입니다.
+### AOP
+* 메소드 앞에 Proxy 패턴의 형태로 실행됩니다.
 
 ### Filter, Interceptor, AOP의 흐름
 * Interceptor와 Filter는 Servlet 단위에서 실행됩니다.
