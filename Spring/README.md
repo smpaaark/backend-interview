@@ -49,35 +49,6 @@
 * 가장 높은 격리 수준
 * 트랜잭션이 완료될 때까지 SELECT하는 모든 데이터에 shared lock이 걸리므로 다른 사용자는 그 영역에 해당되는 데이터 수정 및 입력이 불가능
 
-## AOP
-* 공통 관심 사항과 핵심 관심 사항을 분리하는 것입니다.
-* 트랜잭션, 시간 측정, 로깅 등
-* 스프링에서 프록시 패턴으로 작동합니다.
-
-## Filter, Interceptor
-### Filter
-* DispatcherServlet 이전에 실행
-* init(), doFilter(), destroy()
-* 인코딩 변환 처리 등
-
-### Interceptor
-* 스프링의 DispatcherServlet이 컨트롤러를 호출하기 전, 후로 실행됨
-* 로그인 체크, 권한 체크 등
-* preHandler(), postHandler(), afterCompletion()
-
-## DispatcherServlet
-* 가장 앞단에서 HTTP 프로토콜로 들어오는 요청을 가장 먼저 받아 적합한 컨트롤러에 위임해주는 프론트 컨트롤러(Front Controller)라고 정의할 수 있습니다.
-* 클라이언트로부터 어떠한 요청이 오면 Tomcat(톰캣)과 같은 서블릿 컨테이너가 요청을 받게 됩니다.
-* 그리고 이 모든 요청을 먼저 프론트 컨트롤러인 디스패처 서블릿이 받게 됩니다.
-
-## DispatcherSevlet 흐름
-1. DispatcherServlet은 요청을 받고 URL 컨트롤러의 맵핑 작업을 HandlerMapping에 요청
-2. HandlerMapping은 URL을 기준으로 어떤 컨트롤러를 사용할지 결정
-3. HandlerAdapter는 컨트롤러의 메소드를 호출하는 역할을 하는데 실행될 Interceptor가 있을 때는 Interceptor의 preHandle() 메소드를 실행한 다음 컨트롤러의 메소드를 호출하여 요청
-4. 컨트롤러는 요청을 처리한 뒤 처리한 결과 및 ModelAndView를 DispatcherServlet에 전달
-5. ViewResolver는 컨트롤러가 처리한 결과를 보여줄 뷰를 결정. ViewResolver는 맵핑되는 View 객체를 DispatcherServlet에 전달
-6. DispatcherServlet은 ViewResolver에 전달받은 View Model을 넘겨서 클라이언트에게 보여줄 화면을 생성
-
 ## 의존성 주입 방법
 ### 수정자 주입(Setter)
 * 수정자 주입을 사용하면 setter 메소드를 public으로 열어두어야 합니다.
